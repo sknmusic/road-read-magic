@@ -19,7 +19,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero onGetStarted={handleGetStarted} />
-      <Categories />
+      <Categories onScrollToUpload={handleGetStarted} />
       <div ref={uploadRef}>
         <UploadSection onPrediction={handlePrediction} />
       </div>
