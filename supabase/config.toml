@@ -1,0 +1,4 @@
+project_id = "rsdvmhtchltonhwiwwlp"
+
+[functions.predict-traffic-sign]
+verify_jwt = false

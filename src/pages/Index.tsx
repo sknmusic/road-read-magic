@@ -1,12 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useRef } from "react";
+import { Hero } from "@/components/Hero";
+import { UploadSection, type PredictionResult } from "@/components/UploadSection";
+import { PredictionResult as ResultDisplay } from "@/components/PredictionResult";
+import { Categories } from "@/components/Categories";
 
 const Index = () => {
+  const [predictionResult, setPredictionResult] = useState<PredictionResult | null>(null);
+  const uploadRef = useRef<HTMLDivElement>(null);
+
+  const handleGetStarted = () => {
+    uploadRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handlePrediction = (result: PredictionResult) => {
+    setPredictionResult(result);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen">
+      <Hero onGetStarted={handleGetStarted} />
+      <Categories />
+      <div ref={uploadRef}>
+        <UploadSection onPrediction={handlePrediction} />
       </div>
+      {predictionResult && <ResultDisplay result={predictionResult} />}
     </div>
   );
 };
